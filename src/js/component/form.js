@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Context } from '../store/appContext';
 
 export const Form = () => {
+  
+    const { store, actions } = useContext(Context);
 
   const [fName, setFname] = useState(""); 
   const [email, setEmail] = useState(""); 
@@ -9,11 +12,11 @@ export const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Verificar los valores al enviar el formulario
     console.log('Full Name:', fName);
     console.log('Email:', email);
     console.log('Phone:', phone);
     console.log('Address:', address);
+    actions.addContact(fName, email, phone, address); 
   }
 
   const handleFnameChange = (e) => {
