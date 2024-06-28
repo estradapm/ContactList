@@ -16,6 +16,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             ]
         },
         actions: {
+
+            delContact: (contact) => {
+                let aux = getStore().contacts;
+                aux.splice(contact, 1)
+                console.log(aux)
+                setStore ({contacts: aux})
+            },
+
             addContact: (fName, email, phone, address) => {
                 const newContact = { fName, email, phone, address };
                 const store = getStore();

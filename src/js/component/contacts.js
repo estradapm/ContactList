@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 
-export const Contact = ({ fName, email, phone, address }) => {
+export const Contact = ({ fName, email, phone, address, index }) => {
+  
+  const {store, actions} = useContext (Context);
+  
+  const handleClick = () => {
+    actions.delContact(index)
+  }
+  
   return (
     <div className="card mb-3">
       <div className="row g-0">
@@ -17,6 +25,7 @@ export const Contact = ({ fName, email, phone, address }) => {
             <p className="card-text">Email: {email}</p>
             <p className="card-text">Phone: {phone}</p>
             <p className="card-text">Address: {address}</p>
+            <button className="btn btn-danger" onClick={handleClick}>Eliminar</button>
           </div>
         </div>
       </div>
