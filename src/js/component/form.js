@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 
 export const Form = () => {
-  
-    const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const [fName, setFname] = useState(""); 
   const [email, setEmail] = useState(""); 
@@ -16,7 +15,11 @@ export const Form = () => {
     console.log('Email:', email);
     console.log('Phone:', phone);
     console.log('Address:', address);
-    actions.addContact(fName, email, phone, address); 
+    actions.addContact(fName, email, phone, address);
+    setFname("");
+    setEmail("");
+    setPhone("");
+    setAddress("");
   }
 
   const handleFnameChange = (e) => {
@@ -40,7 +43,9 @@ export const Form = () => {
       <h1 className="d-flex justify-content-center">Add a new contact</h1>
       <div className="mb-3">
         <label htmlFor="fullName" className="form-label">Full Name</label>
-        <input onChange={handleFnameChange}
+        <input 
+          value={fName}
+          onChange={handleFnameChange}
           type="text"
           className="form-control"
           id="fullName"
@@ -49,7 +54,9 @@ export const Form = () => {
       </div>
       <div className="mb-3">
         <label htmlFor="email" className="form-label">Email</label>
-        <input onChange={handleEmailChange}
+        <input 
+          value={email}
+          onChange={handleEmailChange}
           type="email"
           className="form-control"
           id="email"
@@ -58,7 +65,9 @@ export const Form = () => {
       </div>
       <div className="mb-3">
         <label htmlFor="phone" className="form-label">Phone</label>
-        <input onChange={handlePhoneChange}
+        <input 
+          value={phone}
+          onChange={handlePhoneChange}
           type="text"
           className="form-control"
           id="phone"
@@ -67,7 +76,9 @@ export const Form = () => {
       </div>
       <div className="mb-3">
         <label htmlFor="address" className="form-label">Address</label>
-        <input onChange={handleAddressChange}
+        <input 
+          value={address}
+          onChange={handleAddressChange}
           type="text"
           className="form-control"
           id="address"
