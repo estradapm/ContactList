@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
+import { Link } from "react-router-dom";
 
 export const Form = () => {
   const { store, actions } = useContext(Context);
@@ -88,7 +89,9 @@ export const Form = () => {
       <div className="d-grid gap-2">
         <input type="submit" className="btn btn-primary" value="Save" />
       </div>
+      <Link to="/">
       <p><a className="link-opacity-100" href="#">or get back to contacts</a></p>
+			</Link>
     </form>
   );
 };

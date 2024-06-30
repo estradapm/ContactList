@@ -8,10 +8,10 @@ export const Home = () => {
     const { store } = useContext(Context);
 
     return (
-        <div className="container w-50 p-3">
-            <Form />
-            {store.contacts.length > 0 ? (
-                store.contacts.map((contact, i) => (
+        <div>
+            <h1 className="d-flex justify-content-center alert alert-success" role="alert">Contact List</h1>
+            <div className="container w-50 p-3">
+                {store.contacts.map((contact, i) => (
                     <Contact
                         key={i}
                         index={i}
@@ -20,10 +20,8 @@ export const Home = () => {
                         phone={contact.phone}
                         address={contact.address}
                     />
-                ))
-            ) : (
-                <p className ="d-flex justify-content-center"><strong>Añadir contacto</strong></p>
-            )}
+                ))}
+            </div>
         </div>
     );
 };

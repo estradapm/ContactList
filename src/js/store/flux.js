@@ -24,6 +24,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore ({contacts: aux})
             },
 
+            editContact: (index, updatedContact) => {
+                let aux = getStore().contacts;
+                aux[index] = updatedContact;
+                setStore({ contacts: aux });
+            },
+
             addContact: (fName, email, phone, address) => {
                 const newContact = { fName, email, phone, address };
                 const store = getStore();
