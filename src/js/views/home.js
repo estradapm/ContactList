@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Form } from "../component/form";
 import { Contact } from "../component/contacts";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
@@ -15,7 +14,7 @@ export const Home = () => {
                     <Contact
                         key={i}
                         index={i}
-                        fName={contact.fName}
+                        name={contact.name}
                         email={contact.email}
                         phone={contact.phone}
                         address={contact.address}

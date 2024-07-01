@@ -1,61 +1,65 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Form = () => {
-  const { store, actions } = useContext(Context);
+  const { actions } = useContext(Context);
 
-  const [fName, setFname] = useState(""); 
-  const [email, setEmail] = useState(""); 
-  const [phone, setPhone] = useState(""); 
-  const [address, setAddress] = useState(""); 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Full Name:', fName);
+    console.log('Name:', name);
     console.log('Email:', email);
     console.log('Phone:', phone);
     console.log('Address:', address);
-    actions.addContact(fName, email, phone, address);
-    setFname("");
-    setEmail("");
-    setPhone("");
-    setAddress("");
-  }
+    actions.addContact(name, email, phone, address);
+    setName('');
+    setEmail('');
+    setPhone('');
+    setAddress('');
+  };
 
-  const handleFnameChange = (e) => {
-    setFname(e.target.value);
-  }
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
-  }
+  };
 
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <h1 className="d-flex justify-content-center">Add a new contact</h1>
       <div className="mb-3">
-        <label htmlFor="fullName" className="form-label">Full Name</label>
-        <input 
-          value={fName}
-          onChange={handleFnameChange}
+        <label htmlFor="name" className="form-label">
+          Full Name
+        </label>
+        <input
+          value={name}
+          onChange={handleNameChange}
           type="text"
           className="form-control"
-          id="fullName"
+          id="name"
           placeholder="Full Name"
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="email" className="form-label">Email</label>
-        <input 
+        <label htmlFor="email" className="form-label">
+          Email
+        </label>
+        <input
           value={email}
           onChange={handleEmailChange}
           type="email"
@@ -65,8 +69,10 @@ export const Form = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="phone" className="form-label">Phone</label>
-        <input 
+        <label htmlFor="phone" className="form-label">
+          Phone
+        </label>
+        <input
           value={phone}
           onChange={handlePhoneChange}
           type="text"
@@ -76,8 +82,10 @@ export const Form = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="address" className="form-label">Address</label>
-        <input 
+        <label htmlFor="address" className="form-label">
+          Address
+        </label>
+        <input
           value={address}
           onChange={handleAddressChange}
           type="text"
@@ -90,8 +98,12 @@ export const Form = () => {
         <input type="submit" className="btn btn-primary" value="Save" />
       </div>
       <Link to="/">
-      <p><a className="link-opacity-100" href="#">or get back to contacts</a></p>
-			</Link>
+        <p>
+          <a className="link-opacity-100" href="#">
+            or get back to contacts
+          </a>
+        </p>
+      </Link>
     </form>
   );
 };

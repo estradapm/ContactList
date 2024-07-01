@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 
-export const Contact = ({ fName, email, phone, address, index }) => {
-    const { store, actions } = useContext(Context);
-    const [newContact, setNewContact] = useState({ fName, email, phone, address });
+export const Contact = ({ name, email, phone, address, index }) => {
+    const { actions } = useContext(Context);
+    const [newContact, setNewContact] = useState({ name, email, phone, address });
 
     const handleClickDelete = () => {
         actions.delContact(index);
@@ -16,8 +16,10 @@ export const Contact = ({ fName, email, phone, address, index }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewContact({ ...newContact, [name]: value });
+        
     };
 
+    
     return (
         <div className="card mb-3">
             <div className="row g-0">
@@ -30,10 +32,10 @@ export const Contact = ({ fName, email, phone, address, index }) => {
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">
-                        <h5 className="card-title">{fName}</h5>
-                        <p className="card-text">Email: {email}</p>
-                        <p className="card-text">Phone: {phone}</p>
-                        <p className="card-text">Address: {address}</p>
+                        <h5 className="card-title">{newContact.name}</h5>
+                        <p className="card-text">Email: {newContact.email}</p>
+                        <p className="card-text">Phone: {newContact.phone}</p>
+                        <p className="card-text">Address: {newContact.address}</p>
                         <div className="d-flex justify-content-end">
                             <button
                                 type="button"
@@ -118,15 +120,15 @@ export const Contact = ({ fName, email, phone, address, index }) => {
                                     <div className="modal-body">
                                         <form>
                                             <div className="mb-3">
-                                                <label htmlFor="fName" className="form-label">
+                                                <label htmlFor="name" className="form-label">
                                                     Full Name
                                                 </label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    id="fName"
-                                                    name="fName"
-                                                    value={newContact.fName}
+                                                    id="name"
+                                                    name="name"
+                                                    value={newContact.name}
                                                     onChange={handleChange}
                                                 />
                                             </div>
@@ -197,5 +199,3 @@ export const Contact = ({ fName, email, phone, address, index }) => {
         </div>
     );
 };
-
-
