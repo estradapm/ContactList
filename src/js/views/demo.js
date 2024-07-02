@@ -7,6 +7,7 @@ import "../../styles/demo.css";
 import { Form } from "../component/form";
 
 export const Demo = () => {
+	
 	const { store, actions } = useContext(Context);
 
 	return (

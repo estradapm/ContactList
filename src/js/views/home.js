@@ -10,10 +10,10 @@ export const Home = () => {
         <div>
             <h1 className="d-flex justify-content-center alert alert-success" role="alert">Contact List</h1>
             <div className="container w-50 p-3">
-                {store.contacts.map((contact, i) => (
+                {store.contacts.map((contact) => (
                     <Contact
-                        key={i}
-                        index={i}
+                        key={contact.id}
+                        id={contact.id}
                         name={contact.name}
                         email={contact.email}
                         phone={contact.phone}

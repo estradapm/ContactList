@@ -1,16 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 
-export const Contact = ({ name, email, phone, address, index }) => {
+export const Contact = ({ name, email, phone, address, id }) => {
     const { actions } = useContext(Context);
     const [newContact, setNewContact] = useState({ name, email, phone, address });
 
     const handleClickDelete = () => {
-        actions.delContact(index);
+        actions.delContact(id);
     };
 
     const handleClickEdit = () => {
-        actions.editContact(index, newContact);
+        actions.editContact(id, newContact);
     };
 
     const handleChange = (e) => {
@@ -41,7 +41,7 @@ export const Contact = ({ name, email, phone, address, index }) => {
                                 type="button"
                                 className="btn btn-danger me-2"
                                 data-bs-toggle="modal"
-                                data-bs-target={`#deleteModal${index}`}
+                                data-bs-target={`#deleteModal${id}`}
                             >
                                 Delete
                             </button>
@@ -49,7 +49,7 @@ export const Contact = ({ name, email, phone, address, index }) => {
                                 type="button"
                                 className="btn btn-primary"
                                 data-bs-toggle="modal"
-                                data-bs-target={`#editModal${index}`}
+                                data-bs-target={`#editModal${id}`}
                             >
                                 Edit
                             </button>
@@ -57,7 +57,7 @@ export const Contact = ({ name, email, phone, address, index }) => {
 
                         <div
                             className="modal fade"
-                            id={`deleteModal${index}`}
+                            id={`deleteModal${id}`}
                             tabIndex="-1"
                             aria-labelledby="deleteModalLabel"
                             aria-hidden="true"
@@ -99,7 +99,7 @@ export const Contact = ({ name, email, phone, address, index }) => {
 
                         <div
                             className="modal fade"
-                            id={`editModal${index}`}
+                            id={`editModal${id}`}
                             tabIndex="-1"
                             aria-labelledby="editModalLabel"
                             aria-hidden="true"

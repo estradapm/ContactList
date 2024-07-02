@@ -17,25 +17,22 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
         actions: {
 
-            delContact: async (index) => {
+            delContact: async (id) => {
                 try {
-                    const store = getStore();
-                    const contacts = [...store.contacts];
-                    contacts.splice(index, 1);
-                    setStore({ contacts });
-
-                    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/Mariona/contacts/${index}`, {
+                    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/Mariona/contacts/${id}`, {
                         method: "DELETE"
+                    
                     });
                     const data = await resp.json();
                     console.log("Contact deleted:", data);
+                    getActions().loadSomeData();
 
                 } catch (error) {
                     console.error("Error deleting contact", error);
                 }
             },
 
-            editContact: async (index, updatedContact) => {
+            editContact: async (id, updatedContact) => {
                 try {
                     const opt = {
                         method: "PUT",
@@ -45,14 +42,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                         body: JSON.stringify(updatedContact)
                     };
             
-                    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/Mariona/contacts/${index}`, opt);
+                    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/Mariona/contacts/${id}`, opt);
                     const data = await resp.json();
                     console.log("Contact updated:", data);
             
                     const store = getStore();
                     const contacts = [...store.contacts];
-                    contacts[index] = data; // Actualiza el contacto en la posición index con los datos recibidos de la API
-                    setStore({ contacts });
+                    contacts[id] = data; 
+                    getActions().loadSomeData()
             
                 } catch (error) {
                     console.error("Error editing contact", error);
